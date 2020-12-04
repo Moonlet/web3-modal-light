@@ -1,0 +1,6 @@
+.history
+.vs_code
+
+yarn-error.log
+node_modules
+dist

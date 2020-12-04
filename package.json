@@ -1,0 +1,21 @@
+{
+  "name": "web3-modal-light",
+  "version": "0.2.0",
+  "description": "Ultra light Web3 provider solution for multiple wallets on different blockchains.",
+  "scripts": {
+    "build": "rm -rf dist && cp -r src dist/ && cp package.json dist/ && cp README.md dist/ && yarn build:zilliqa ",
+    "build:zilliqa": "microbundle --name Web3ModalZilliqa -i src/blockchains/zilliqa/index.ts -o dist/zilliqa.js",
+    "minify:styles": "node minify-styles.js",
+    "dev:zilliqa": "microbundle --name Web3ModalZilliqa -i src/blockchains/zilliqa/index.ts -o dist/zilliqa.js watch",
+    "pub": "yarn build && cd dist && yarn publish --access public",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tibi Krisboi <tibi@moonlet.io>",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "goober": "^2.0.5",
+    "microbundle": "^0.12.4",
+    "typescript": "^4.0.2"
+  }
+}

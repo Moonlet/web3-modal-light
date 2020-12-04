@@ -3,9 +3,10 @@
   "version": "0.2.0",
   "description": "Ultra light Web3 provider solution for multiple wallets on different blockchains.",
   "scripts": {
-    "build": "rm -rf dist && cp -r src dist/ && cp package.json dist/ && cp README.md dist/ && yarn build:zilliqa ",
+    "build": "yarn minify:styles && rm -rf dist && cp -r src dist/ && cp package.json dist/ && cp README.md dist/ && yarn build:zilliqa && yarn minify:revert",
     "build:zilliqa": "microbundle --name Web3ModalZilliqa -i src/blockchains/zilliqa/index.ts -o dist/zilliqa.js",
-    "minify:styles": "node minify-styles.js",
+    "minify:styles": "cp src/core/styles.ts src/core/styles.ts.bak && node minify-styles.js",
+    "minify:revert": "rm -rf src/core/styles.ts && mv src/core/styles.ts.bak src/core/styles.ts",
     "dev:zilliqa": "microbundle --name Web3ModalZilliqa -i src/blockchains/zilliqa/index.ts -o dist/zilliqa.js watch",
     "pub": "yarn build && cd dist && yarn publish --access public",
     "test": "echo \"Error: no test specified\" && exit 1"

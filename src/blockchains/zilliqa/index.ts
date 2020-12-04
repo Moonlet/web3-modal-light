@@ -16,8 +16,17 @@ function connect(options?: IOptions) {
   return Web3ModalCore.connect(mergedOptions);
 }
 
+function fixZilliqaJsInstance(zilliqa) {
+  if (zilliqa?.blockchain?.signer) {
+    zilliqa.blockchain.signer = zilliqa.contracts.signer = {
+      sign: (m) => m,
+    };
+  }
+}
+
 export default {
   connect,
   init: Web3ModalCore.init,
   updateTheme: Web3ModalCore.updateTheme,
+  fixZilliqaJsInstance,
 };
